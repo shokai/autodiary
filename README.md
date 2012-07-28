@@ -1,25 +1,31 @@
 AutoDiary
 =========
+make diary automatically.
 
-## Clone
+
+Clone
+-----
 
     % git clone git://github.com/shokai/autodiary.git
 
 
-## Install Dependencies
+Install Dependencies
+--------------------
 
     % gem install bundler
     % bundle install
 
 
-## Config
+Config
+------
 
     % cp sample.config.yml config.yml
 
 edit config.yml.
 
 
-## Run
+Run
+---
 
     ruby autodiary.rb --help
     ruby autodiary.rb --run

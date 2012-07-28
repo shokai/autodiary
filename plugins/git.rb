@@ -26,11 +26,7 @@ cmds = cmds.keys.sort{|a,b|
   {:name => name, :count => cmds[name]}
 }
 
-case cmds.empty?
-when true
-  "gitは使ってない"
-else
-  "gitは"+cmds[0...10].map{|cmd|
-    "#{cmd[:name]} #{cmd[:count]}回"
-  }.join('、')+"使った"
-end
+raise Error, "gitは使ってない" if cmds.empty?
+"gitは"+cmds[0...10].map{|cmd|
+  "#{cmd[:name]} #{cmd[:count]}回"
+}.join('、')+"使った"

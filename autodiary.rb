@@ -18,14 +18,17 @@ end
 
 tumblr = Tumblr.new Conf['tumblr']['mail'], Conf['tumblr']['pass']
 
-begin
 diary = Plugin.list.map{|name|
-  Plugin.exec name
-}.join("\n")
-rescue Plugin::HistoryEmptyException => e
-  STDERR.puts e
-  exit 1
-end
+  begin
+    Plugin.exec name
+  rescue Plugin::HistoryEmptyException => e
+    STDERR.puts e
+    exit 1
+  rescue Plugin::Error => e
+    STDERR.puts e
+    e.to_s
+  end
+}.join "\n"
 
 puts hostname = `hostname`.split(/\./)[0]
 puts timestamp = Time.now.strftime('%Y年%m月%d日 %H時%M分')

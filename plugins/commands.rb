@@ -21,11 +21,7 @@ cmds = cmds.keys.sort{|a,b|
   {:name => name, :count => cmds[name]}
 }
 
-case cmds.empty?
-when true
-  raise HistoryEmptyException, 'history empty'
-else
-  cmds[0...5].map{|cmd|
-    "#{cmd[:name]} #{cmd[:count]}回"
-  }.join('、')+"実行しました"
-end
+raise HistoryEmptyException, 'history is empty' if cmds.empty?
+cmds[0...5].map{|cmd|
+  "#{cmd[:name]} #{cmd[:count]}回"
+}.join('、')+"実行しました"

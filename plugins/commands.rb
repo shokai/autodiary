@@ -5,7 +5,7 @@ day = Date.today-1
 
 h24 = Time.now.to_i-60*60*24
 
-cmds = Hash.new(0)
+cmds = Hash.new 0
 
 IO.popen("tail -5000 ~/.zsh-history", 'r+') do |io|
   while line = io.gets
@@ -22,6 +22,11 @@ cmds = cmds.keys.sort{|a,b|
   {:name => name, :count => cmds[name]}
 }
 
-cmds[0...5].map{|cmd|
-  "#{cmd[:name]} #{cmd[:count]}回"
-}.join('、')+"実行しました"
+case cmds.empty?
+when true
+  raise HistoryEmptyException, 'history empty'
+else
+  cmds[0...5].map{|cmd|
+    "#{cmd[:name]} #{cmd[:count]}回"
+  }.join('、')+"実行しました"
+end

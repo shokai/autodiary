@@ -1,5 +1,10 @@
 
 module Plugin
+  class Error < StandardError
+  end
+  class HistoryEmptyException < Exception
+  end
+
   @@plugins = {}
   Dir.glob(File.expand_path '../plugins/*.rb', File.dirname(__FILE__)).each do |rb|
     name = rb.scan(/([^\/]+)\.rb$/)[0][0]

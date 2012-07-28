@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
 require 'date'
 require 'kconv'
+
 day = Date.today-1
-
 h24 = Time.now.to_i-60*60*24
-
 cmds = Hash.new 0
 
 IO.popen("tail -5000 ~/.zsh-history", 'r+') do |io|
@@ -26,7 +25,6 @@ cmds = cmds.keys.sort{|a,b|
 }.map{|name|
   {:name => name, :count => cmds[name]}
 }
-
 
 case cmds.empty?
 when true

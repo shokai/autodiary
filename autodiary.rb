@@ -22,11 +22,12 @@ diary = Plugin.list.map{|name|
   Plugin.exec name
 }.join("\n")
 
+puts hostname = `hostname`.split(/\./)[0]
 puts timestamp = Time.now.strftime('%Y年%m月%d日 %H時%M分')
 puts diary
 
 if parser.has_option? :run
-  res = tumblr.write_text(timestamp, diary, 'diary')
+  res = tumblr.write_text("#{timestamp} @#{hostname}", diary, "diary,#{hostname}")
   print "post tumblr.com.. "
   puts res =~ /^\d+$/ ? "ok (#{res})" : 'error!'
 end

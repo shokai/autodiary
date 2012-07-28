@@ -7,10 +7,19 @@ IO.popen("last reboot | grep '^reboot '", 'r+') do |io|
     case RUBY_PLATFORM
     when /darwin/
       now = Time.now
-      unless params[-2] == now.day and
+      unless params[-2] == now.day.to_s and
           params[-3] == now.strftime('%b')
         next
       end
+    when /linux/
+      now = Time.now
+      unless params[6] == now.day.to_s and
+          params[5] == now.strftime('%b')
+        next
+      else
+      end
+    else
+      next
     end
     p params
     count += 1

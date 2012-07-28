@@ -26,7 +26,6 @@ diary = Plugin.list.map{|name|
     exit 1
   rescue Plugin::Error => e
     STDERR.puts e
-    e.to_s
   end
 }.join "\n"
 

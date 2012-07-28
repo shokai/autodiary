@@ -3,6 +3,18 @@
 require File.expand_path 'bootstrap', File.dirname(__FILE__)
 require 'plugin'
 require 'tumblr'
+require 'args_parser'
+
+parser = ArgsParser.parse ARGV do
+  arg :run, 'write blog'
+  arg :help, 'show help', :alias => :h,
+end
+
+if parser.has_option? :help
+  puts parser.help
+  puts "e.g.  ruby #{$0} --run"
+  exit 1
+end
 
 tumblr = Tumblr.new Conf['tumblr']['mail'], Conf['tumblr']['pass']
 
@@ -10,6 +22,11 @@ diary = Plugin.list.map{|name|
   Plugin.exec name
 }.join("\n")
 
+puts timestamp = Time.now.strftime('%Y年%m月%d日 %H時%M分')
 puts diary
 
-tumblr.write_text('問題なし', diary, 'diary')
+if parser.has_option? :run
+  res = tumblr.write_text(timestamp, diary, 'diary')
+  print "post tumblr.com.. "
+  puts res =~ /^\d+$/ ? "ok (#{res})" : 'error!'
+end

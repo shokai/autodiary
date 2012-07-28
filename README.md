@@ -2,6 +2,9 @@ AutoDiary
 =========
 make diary automatically.
 
+* http://shokai-log.tumblr.com/
+* https://github.com/shokai/autodiary
+
 
 Clone
 -----

@@ -7,7 +7,7 @@ require 'args_parser'
 
 parser = ArgsParser.parse ARGV do
   arg :run, 'write blog'
-  arg :help, 'show help', :alias => :h,
+  arg :help, 'show help', :alias => :h
 end
 
 if parser.has_option? :help

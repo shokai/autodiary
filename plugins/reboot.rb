@@ -21,7 +21,6 @@ IO.popen("last reboot | grep '^reboot '", 'r+') do |io|
     else
       next
     end
-    p params
     count += 1
   end
 end

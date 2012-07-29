@@ -3,7 +3,7 @@ GEM
   specs:
     args_parser (0.0.2)
     backports (2.6.2)
-    ffi (1.0.11)
+    ffi (1.1.1)
     httpclient (2.2.5)
     sys-filesystem (1.0.0)
       ffi (>= 1.0.0)
@@ -14,6 +14,5 @@ PLATFORMS
 DEPENDENCIES
   args_parser
   backports
-  ffi (< 1.1.0)
   httpclient
   sys-filesystem

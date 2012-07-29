@@ -18,6 +18,7 @@ class Data
 
   def self.data
     data = {}
+    return {} unless File.exists? file
     File.open(file, 'r') do |f|
       data = JSON.parse f.read rescue data = {}
     end

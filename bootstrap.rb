@@ -4,3 +4,4 @@ require 'rubygems'
 require 'bundler'
 Bundler.require
 require 'conf'
+require 'data'

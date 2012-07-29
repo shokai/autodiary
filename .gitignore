@@ -2,5 +2,6 @@
 *~
 *#*
 config.yml
+data.json
 vendor
 .bundle

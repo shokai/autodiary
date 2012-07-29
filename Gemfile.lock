@@ -5,6 +5,7 @@ GEM
     backports (2.6.2)
     ffi (1.1.1)
     httpclient (2.2.5)
+    json (1.7.3)
     sys-filesystem (1.0.0)
       ffi (>= 1.0.0)
 
@@ -15,4 +16,5 @@ DEPENDENCIES
   args_parser
   backports
   httpclient
+  json
   sys-filesystem

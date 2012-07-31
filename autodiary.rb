@@ -27,7 +27,13 @@ diary = Plugin.list.map{|name|
   rescue Plugin::Error => e
     STDERR.puts e
   end
-}.join "\n"
+}.select{|i|
+  i
+}.sort{|a,b|
+  b.to_s <=> a.to_s
+}
+
+diary = ['特に無し。', '何も無し。', '平穏無事。', '何もない日だった。'].sample if diary.empty?
 
 puts hostname = `hostname`.split(/\./)[0]
 puts timestamp = Time.now.strftime('%Y年%m月%d日 %H時%M分')

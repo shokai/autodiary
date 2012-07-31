@@ -26,7 +26,7 @@ cmds = cmds.keys.sort{|a,b|
   {:name => name, :count => cmds[name]}
 }
 
-return "" if cmds.empty?
+return nil if cmds.empty?
 "gitは"+cmds[0...10].map{|cmd|
   "#{cmd[:name]} #{cmd[:count]}回"
 }.join('、')+"使った"

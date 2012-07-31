@@ -25,5 +25,5 @@ IO.popen("last reboot | grep '^reboot '", 'r+') do |io|
   end
 end
 
-return "" if count < 1
+return nil if count < 1
 "#{count}回再起動した"

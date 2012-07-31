@@ -21,7 +21,7 @@ cmds = cmds.keys.sort{|a,b|
   {:name => name, :count => cmds[name]}
 }
 
-raise HistoryEmptyException, 'history is empty' if cmds.empty?
+return nil if cmds.empty?
 cmds[0...5].map{|cmd|
   "#{cmd[:name]} #{cmd[:count]}回"
 }.join('、')+"実行しました"

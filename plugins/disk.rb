@@ -16,7 +16,8 @@ if diff > 0.01
   diary += "の空き容量 #{diff}GB増えた。"
 elsif -0.01 > diff
   diary += "#{diff*-1}GB使った。"
+else
+  return nil
 end
 
-diary += "残り#{available}GB空いてる"
-diary
+"#{diary}残り#{available}GB空いてる"

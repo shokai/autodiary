@@ -33,7 +33,8 @@ diary = Plugin.list.map{|name|
   b.to_s <=> a.to_s
 }
 
-diary = ['特に無し。', '何も無し。', '平穏無事。', '何もない日だった。'].sample if diary.empty?
+diary.push ['特に無し。', '何も無し。', '平穏無事。', '何もない日だった。'].sample if diary.empty?
+diary = diary.join("\n")
 
 puts hostname = `hostname`.split(/\./)[0]
 puts timestamp = Time.now.strftime('%Y年%m月%d日 %H時%M分')

@@ -6,6 +6,13 @@ make diary automatically.
 * https://github.com/shokai/autodiary
 
 
+Environment
+-----------
+* Mac OSX or Linux
+* zsh
+* "setopt extended_history" in ~/.zshrc
+
+
 Clone
 -----
 

@@ -2,21 +2,21 @@
 # -*- coding: utf-8 -*-
 require File.expand_path 'bootstrap', File.dirname(__FILE__)
 require 'plugin'
-require 'tumblr'
-require 'args_parser'
 
 parser = ArgsParser.parse ARGV do
-  arg :run, 'write blog'
+  arg :tweet, 'twitter user name'
   arg :help, 'show help', :alias => :h
+
+  validate :name, "invalid twitter username" do |v|
+    v =~ /^[a-zA-Z0-9_]+$/
+  end
 end
 
 if parser.has_option? :help
-  puts parser.help
-  puts "e.g.  ruby #{$0} --run"
+  STDERR.puts parser.help
+  STDERR.puts "e.g.  ruby #{$0} --tweet shokai"
   exit 1
 end
-
-tumblr = Tumblr.new Conf['tumblr']['mail'], Conf['tumblr']['pass']
 
 diary = Plugin.list.map{|name|
   begin
@@ -34,14 +34,16 @@ diary = Plugin.list.map{|name|
 }
 
 diary.push ['特に無し。', '何も無し。', '平穏無事。', '何もない日だった。'].sample if diary.empty?
-diary = diary.join("\n")
 
 puts hostname = `hostname`.split(/\./)[0]
-puts timestamp = Time.now.strftime('%Y年%m月%d日 %H時%M分')
 puts diary
 
-if parser.has_option? :run
-  res = tumblr.write_text("#{timestamp} @#{hostname}", diary, "diary,#{hostname}")
-  print "post tumblr.com.. "
-  puts res =~ /^\d+$/ ? "ok (#{res})" : 'error!'
+if parser[:tweet]
+  name = parser[:tweet] if parser.has_param? :tweet
+  client = Tw::Client.new
+  client.auth name
+  diary.each do |line|
+    msg = "autodiary(#{hostname}) #{line}"
+    client.tweet msg
+  end
 end

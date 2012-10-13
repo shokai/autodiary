@@ -43,7 +43,7 @@ if parser[:tweet]
   client = Tw::Client.new
   client.auth name
   diary.each do |line|
-    msg = "autodiary(#{hostname}) #{line}"
+    msg = "[#{hostname}] 今日は#{line}"
     client.tweet msg
   end
 end

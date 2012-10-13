@@ -2,7 +2,6 @@ AutoDiary
 =========
 make diary automatically.
 
-* http://shokai-log.tumblr.com/
 * https://github.com/shokai/autodiary
 
 
@@ -26,19 +25,21 @@ Install Dependencies
     % bundle install
 
 
-Config
-------
+Twitter Auth
+------------
+Autodiary uses <a href="http://shokai.github.com/tw">Tw</a> as front-end of Twitter Auth.
 
-    % cp sample.config.yml config.yml
+    % tw --help
+    % tw --user:add
 
-edit config.yml.
+=> add twitter account.
 
 
 Run
 ---
 
-    ruby autodiary.rb --help
-    ruby autodiary.rb --run
+    % ruby autodiary.rb --help
+    % ruby autodiary.rb --tweet USERNAME
 
 
 LICENSE

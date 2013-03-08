@@ -35,7 +35,7 @@ diary = Plugin.list.map{|name|
 
 diary.push ['特に無し。', '何も無し。', '平穏無事。', '何もない日だった。'].sample if diary.empty?
 
-puts hostname = `hostname`.split(/\./)[0]
+puts hostname = `hostname`.strip.split(/\./)[0]
 puts diary
 
 if parser[:tweet]

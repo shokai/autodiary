@@ -1,4 +1,5 @@
-source :rubygems
+source 'https://rubygems.org'
+
 gem 'backports'
 gem 'args_parser'
 gem 'tw'

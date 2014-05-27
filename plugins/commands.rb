@@ -11,7 +11,13 @@ IO.popen("tail -5000 ~/.zsh-history", 'r+') do |io|
     line = line.toutf8
     time, cmd = line.scan(/: (\d+):\d+;(.+)/)[0]
     next if h24 > time.to_i
-    cmds[cmd.split(/\s/)[0]] += 1
+    argv = cmd.split(/\s/)
+    while !argv.empty? and argv.first =~ /=/ do
+      argv.shift
+    end
+    next if argv.empty?
+    name = argv.first
+    cmds[name] += 1
   end
 end
 
